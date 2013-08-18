@@ -1,0 +1,152 @@
+﻿<style>
+	#gbox_gird{margin:10px 0 0 0;}	
+</style>
+<table id="gird" style="margin:0 0 20px 0;"></table>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			var urls = _sker.getBaseUrl();
+			var CreateGrid = function(){
+						var $gird = $('#gird');
+						$gird.jqGrid({
+								url: urls + "/data/billqueryservice2.js",
+            		datatype: 'json',
+		            colNames: ["BillTypeID", "ClassID", "单据类型编号", "单据类型名称", "单据说明"],
+		            colModel: [
+			          	{ name: 'BillTypeID', index: 'BillTypeID', width: 50, hidden: true }, //单据类型id
+				        	{name: 'ClassID', index: 'ClassID', width: 50, hidden: true },  //单据分类id
+			            {name: 'BillTypeCode', index: 'BillTypeCode', width: 200 },  //单据类型编号
+			            {name: 'BillTypeName', index: 'BillTypeName', width: 350 },  //单据类型名称
+			            {name: 'Description', index: 'Description', width: 200}  //单据说明
+			          ],
+		            rowNum: 5,
+		            jsonReader: { root: "Value", page: "currpage", total: "totalpages", records: "totalrecords", userdata: "userdata", repeatitems: false, id: "0" }
+			          , cmTemplate: {sortable: false}
+			          , mtype: "GET"
+			          , viewrecords: true
+			          , emptyrecords: "没有找到数据"
+		            , autowidth: false
+			          , forceFit: true
+			          , gridview: true
+			          , height: "auto"
+			          , loadError: function (xhr, status, error) { _sker.ShowMsg("加载错误\n\n" + status + "-" + error); }
+			          , loadBeforeSend: function (xhr) {}
+			          , loadComplete: function (xhr) {}
+				        , ondblClickRow: function (rowid, iRow, iCol, e) {}
+						});	
+			}
+			CreateGrid();
+	})($$)
+</script>
+<div>
+<textarea id="code" name="code">
+【一】：定义grid数据结构。
+
+[小提示：定义的grid数据结构，在初始化时，必须与colModel中所定义的参数相符合。]
+
+{
+    "currpage": 1,
+    "totalpages": 1,
+    "totalrecords": 3,
+    "Value": [
+        {
+            "ID_Num": 1,
+            "BillTypeID": 1,
+            "ClassID": 2,
+            "BusinessTypeID": "3",
+            "Enabled": "1",
+            "FirstNameRule": "CLFN",
+            "NumLength": "4",
+            "BillTypeName": "差旅费报销单(标准内)",
+            "BillTypeCode": "dj01",
+            "Description": ""
+        },
+        {
+            "ID_Num": 2,
+            "BillTypeID": 2,
+            "ClassID": 2,
+            "BusinessTypeID": "3",
+            "Enabled": "1",
+            "FirstNameRule": "CLFW",
+            "NumLength": "4",
+            "BillTypeName": "差旅费报销单(标准外)",
+            "BillTypeCode": "dj02",
+            "Description": ""
+        },
+        {
+            "ID_Num": 3,
+            "BillTypeID": 12,
+            "ClassID": 2,
+            "BusinessTypeID": "3",
+            "Enabled": "1",
+            "FirstNameRule": "JTF",
+            "NumLength": "4",
+            "BillTypeName": "交通费报销单",
+            "BillTypeCode": "dj12",
+            "Description": ""
+        }
+    ],
+    "ErrorMsg": "",
+    "RefResult": null,
+    "OutResult": null
+}
+
+【二】：引入grid控件文件，grid依赖于jquery。
+
+[小提示：同系统中，很多地方需要使用的控件，可以在seeker中引入。]
+
+var Loadfiles = [_sker.getUrl("i18n/grid.locale-cn.js"), _sker.getUrl("ui/seeker.ui.jqgrid.js")];
+
+【三】：设置grid容器
+
+<table id="grid"></table>
+
+【四】：初始化grid。
+
+[小提示：grid复杂编程需要时刻参阅文档]
+
+	var _sker = $$;
+	var urls = _sker.getBaseUrl();
+	var $gird = $('#gird');
+	$gird.jqGrid({
+		url: urls + "/data/billqueryservice2.js",
+    datatype: 'json',
+		colNames: ["BillTypeID", "ClassID", "单据类型编号", "单据类型名称", "单据说明"],
+		colModel: [
+			  {name: 'BillTypeID', index: 'BillTypeID', width: 50, hidden: true },
+				{name: 'ClassID', index: 'ClassID', width: 50, hidden: true },
+			  {name: 'BillTypeCode', index: 'BillTypeCode', width: 200 },
+			  {name: 'BillTypeName', index: 'BillTypeName', width: 250 },
+			  {name: 'Description', index: 'Description', width: 400}
+		],
+		rowNum: 5,
+		jsonReader: { 
+					root: "Value", 
+					page: "currpage", 
+					total: "totalpages", 
+					records: "totalrecords",
+					 userdata: "userdata", 
+					 repeatitems: false, 
+					 id: "0" 
+		}
+		, cmTemplate: {sortable: false}
+		, mtype: "GET"
+		, viewrecords: true
+		, emptyrecords: "没有找到数据"
+		, autowidth: false
+		, forceFit: true
+		, gridview: true
+		, height: "auto"
+		, loadError: function (xhr, status, error) { _sker.ShowMsg("加载错误\n\n" + status + "-" + error); }
+		, loadBeforeSend: function (xhr) {}
+		, loadComplete: function (xhr) {}
+		, ondblClickRow: function (rowid, iRow, iCol, e) {}
+	});	
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

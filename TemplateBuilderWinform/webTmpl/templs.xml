@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TemplateRoot>
+  <Template TCode="0001" Name="蓝色商务风格" Path="templs/Template1.zip"  Layout="top,mainmenu,bottom" />
+  <Template TCode="0002" Name="简易查询程序" Path="templs/Template2.zip"  Layout="top,bottom" />
+  <Template TCode="0003" Name="费用报销风格" Path="templs/Template3.zip"  Layout="top,leftmenu,bottom" />
+</TemplateRoot>

@@ -1,0 +1,147 @@
+﻿<div id="billView" style="height:150;width:800px;">
+  <div id="tabs" class="tabs-bottom ui-tabs ui-widget ui-widget-content ui-corner-all" style="height:100%; position:relative;border:none;">
+	      <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-bottom" id="uls" style=" margin:5px 0 0 5px;"></ul>
+  </div>		    
+</div>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			var _url = _sker.getBaseUrl();
+			var CreateSubPageTabs = function () {
+        maintab = $('#tabs').tabs({
+        		//添加选项卡
+            add: function (e, ui) {   
+                var tabid = ui.panel.id;
+                if (tabid.slice(0, 4) == "bill") {
+                    $(ui.tab).parents('li:first').append('<span class="ui-tabs-close ui-icon ui-icon-close" title="关闭标签页"></span>').find('span.ui-tabs-close').click(function () {
+                        maintab.tabs('remove', $('li', maintab).index($(this).parents('li:first')[0]));
+                        maintab.tabs('select', 0);
+                    });
+                    maintab.tabs('select', '#' + tabid);
+                }
+            },
+            //注册事件
+            select: function (event, ui) {  
+
+            }
+        });
+        return maintab;
+    	};
+    	var SubPageTabs = CreateSubPageTabs();
+			var Tabs = function(){
+					_sker.getSrv({
+            type: 'GET',
+            url: _url + "/data/billclass.js",
+            callback: function (data) {
+                var json = data;
+                for (var index = 0; index < json.Value.length; index++) {
+                    var item = json.Value[index];
+                    if (item.ParentID != "-1") {
+                        //渲染tabs选项卡
+                        //console.log(item.ClassID);
+                        //console.log(item.ClassName);
+                        SubPageTabs.tabs('add', "#tabs_" + item.ClassID, item.ClassName);
+                    }
+                }
+            }
+        });
+			}
+			Tabs();
+	})($$);	
+</script>
+<div>
+<textarea id="code" name="code">
+【一】：定义选项卡所需要的数据结构。
+
+{
+    "Value": [
+        {
+            "ClassID": 1,
+            "ParentID": -1,
+            "ClassName": "单据分类"
+        },
+        {
+            "ClassID": 2,
+            "ParentID": 1,
+            "ClassName": "差旅费报销"
+        },
+        {
+            "ClassID": 3,
+            "ParentID": 1,
+            "ClassName": "借款"
+        },
+        {
+            "ClassID": 4,
+            "ParentID": 1,
+            "ClassName": "财务结算"
+        },
+        {
+            "ClassID": 5,
+            "ParentID": 1,
+            "ClassName": "一般业务报销"
+        },
+        {
+            "ClassID": 6,
+            "ParentID": 1,
+            "ClassName": "申请单"
+        }
+    ],
+    "ErrorMsg": "",
+    "RefResult": null,
+    "OutResult": null
+}
+
+【二】引入jquery_ui.js文件，此控件依赖于jquery。
+
+【三】编写初始tabs代码
+
+var _sker = _sker;
+			var _url = _sker.getBaseUrl();
+			var CreateSubPageTabs = function () {
+        maintab = $('#tabs').tabs({
+        		//添加选项卡
+            add: function (e, ui) {   
+                var tabid = ui.panel.id;
+                if (tabid.slice(0, 4) == "bill") {
+                    $(ui.tab).parents('li:first')
+                    .append('<span class="ui-tabs-close ui-icon ui-icon-close" title="关闭标签页"></span>')
+                    .find('span.ui-tabs-close').click(function () {
+                        maintab.tabs('remove', $('li', maintab).index($(this).parents('li:first')[0]));
+                        maintab.tabs('select', 0);
+                    });
+                    maintab.tabs('select', '#' + tabid);
+                }
+            },
+            //注册事件
+            select: function (event, ui) {  
+
+            }
+        });
+        return maintab;
+    	};
+    	var SubPageTabs = CreateSubPageTabs();
+			var Tabs = function(){
+					_sker.getSrv({
+            type: 'GET',
+            url: _url + "/data/billclass.js",
+            callback: function (data) {
+                var json = data;
+                for (var index = 0; index < json.Value.length; index++) {
+                    var item = json.Value[index];
+                    if (item.ParentID != "-1") {
+                        //渲染tabs选项卡
+                        SubPageTabs.tabs('add', "#tabs_" + item.ClassID, item.ClassName);
+                    }
+                }
+            }
+        });
+			}
+			Tabs();
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

@@ -1,0 +1,82 @@
+﻿<ul id="nav">
+		<li>
+			<a href="#" class="menu">模版使用指南</a>
+			<div class="_nav_h">
+				<span src="help">模版使用指南</span>
+			</div>
+		</li>
+    <li>
+    	<a href="#" class="menu">模版展示</a>
+    	<div class="_nav_h">
+    		<span src="newbill">模版展示</span>
+    	</div>
+    </li>
+    <li>
+    	<a href="#" class="menu">模版文字</a>
+    	<div class="_nav_h">
+    		<span src="billquery">模版文字</span>
+    	</div>
+    </li>
+</ul>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			//菜单栏事件委派模拟
+			function LoadEventNav(firstsrc) {
+			    if (firstsrc !== undefined) {
+			        _sker.tmplsServiceCom.ServiceNav(firstsrc,'allcons');
+			    }
+			    var _ishover = false;
+			    var _nav = $('#nav');
+			    var _li = $('#nav li')
+			    _li.hover(function(){
+			    	_ishover = true;
+			    },function(){
+			    	_ishover = false;
+			    });
+			    _nav.bind('mouseover', function (e) {
+			        var tar = e.target,
+			            $tar = $(tar),
+			            nodeName = tar.nodeName,
+			            $li = $('#nav li');
+			        if (nodeName === 'A') {
+			            $tar.siblings().show();
+			        }
+			    });
+			    _li.bind('mouseout',function(e){
+			    		var _tar = e.target;
+			    		var $tars = $(_tar);
+			    		var _nodeName = _tar.nodeName;
+			    		if(_ishover == false){
+			    				if(_nodeName === 'SPAN'){
+			    					$tars.parent().hide();
+			    					_ishover = true;
+										return;
+									}else{
+				    				if(_nodeName === 'A'){
+				    					$tars.siblings().hide();
+				    					_ishover = true;
+				    					return;
+				    				}
+				    				$tars.hide();
+				    				_ishover = true;
+			    				}
+			    		}
+			    });
+			    var _nav_h = $('._nav_h');
+			    _nav_h.bind('click',function(e){
+			    			var tars = e.target;
+			    			var $target = $(tars);
+			    			var nodeNames = tars.nodeName;
+			    			if(nodeNames === 'SPAN'){
+			    				 var src = $target.attr('src');
+			    				 if(src !== undefined){
+										 	_sker.tmplsServiceCom.ServiceNav(src,'allcons');
+										 	$target.parent().hide();
+										}
+			    			}
+			    });
+			}
+			LoadEventNav('help');
+	})($$);
+</script>

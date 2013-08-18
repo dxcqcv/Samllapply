@@ -1,0 +1,54 @@
+﻿<div>
+<textarea id="code" name="code">
+【一】：在MVC的model层中，定义自己所需要的模型数据，并在视图层中定义需要渲染的模版片段文件。
+
+[小提示：因为这里模版的渲染工作是由jquery_tmpl.js来完成的，需要有一定的格式。]
+
+$$.model.add('billtoolbar',function(){
+
+	//使用哪个视图
+	
+	this.UseView = "billtoolbar";
+	
+	//模型数据定义
+	
+	this.data = {
+	
+	"BillToolBar":
+	
+	{
+	"fields": [
+		{ "id": "savebill", "text": "保存", "index": 0, "action": "savebill" },
+		{ "id": "ct", "text": "传递", "index": 1, "action": "cdbill" },
+		{ "id":"insaffix", "text":"插入附件", "index":2, "validate":"required", "action":"insaffix"},
+		{ "id":"glbill","text":"关联单据", "type":"datepicker","index":3, "action":"glbill"},
+		{ "id": "lzjl", "text": "流转记录", "index": 4, "action": "record" },
+		{ "id": "xplc", "text": "审批流程", "index": 5, "action": "approveflow" },
+		{ "id": "preview", "text": "预览", "index": 6, "action": "preview" },
+		{ "id": "print", "text": "打印", "index": 7, "action": "print" },
+		{ "id": "glbills", "text": "查询关联", "index": 8, "action": "selects" }
+	]
+  }
+}
+});
+
+【二】：在HTML片段中，使用$\{\}\来渲染模版，花括号中的参数是在模型层中定义的index。
+
+<ul>
+	
+	<li class="split"><img src="${skinpath}/images/head-center.gif" /></li>
+
+	<li class="split"><img src="${skinpath}/images/head-center.gif" /></li>
+
+	<li><a href="javascript:void(0);">${0}</a></li>
+
+</ul>
+
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

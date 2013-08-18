@@ -1,0 +1,86 @@
+﻿<div>
+<textarea id="code" name="code">
+【一】：在页面中引入seeker.js文件，并在其后指定控制器，与当前页面的css文件.
+
+<script type="text/javascript" src="libs/seeker.js?ctrl=main&css=master"></script>
+
+【二】：在已经指定的控制器文件中，开始编程。
+
+[小提示：参数传入为指定的控制器名，若有视图则需指定视图，无则none,init函数的功能相当于初始化。]
+
+$$.ctrl.add('billToolBar',function(){
+
+	//指定视图
+	
+	this.UseView = "billtoolbar";
+	
+	//模型层数据定义
+	
+	this.ActionList = "BillToolBar";
+	
+	//初始化
+	
+	this.init = function(){}
+	
+	//模版事件驱动
+	
+	this.ActionResult = {}
+
+});
+
+【三】：如果定义了视图，则需指定模型，无模型则指定为none。
+
+[小提示：参数传入为视图层的每个当前视图文件夹名，并且所有的视图js文件必须为view.js文件。]
+
+$$.view.add('billtoolbar', function(){
+
+	//模型id
+	
+	this.UseModel = "billtoolbar"; 
+	
+	//模版HTML片段
+	
+	this.BillToolBar = "nav.html";
+	
+});
+
+【四】：如果定义了模型，则需指定视图，无视图则指定为none。
+
+[小提示：模型数据的定义有一定的格式，请查阅seeker.js入门文档。]
+
+$$.model.add('billtoolbar',function(){
+
+	//使用哪个视图
+	
+	this.UseView = "billtoolbar";
+	
+	//模型数据定义
+	
+	this.data = {
+	
+	"BillToolBar":
+	
+	{
+	"fields": [
+		{ "id": "savebill", "text": "保存", "index": 0, "action": "savebill" },
+		{ "id": "ct", "text": "传递", "index": 1, "action": "cdbill" },
+		{ "id":"insaffix", "text":"插入附件", "index":2, "validate":"required", "action":"insaffix"},
+		{ "id":"glbill","text":"关联单据", "type":"datepicker","index":3, "action":"glbill"},
+		{ "id": "lzjl", "text": "流转记录", "index": 4, "action": "record" },
+		{ "id": "xplc", "text": "审批流程", "index": 5, "action": "approveflow" },
+		{ "id": "preview", "text": "预览", "index": 6, "action": "preview" },
+		{ "id": "print", "text": "打印", "index": 7, "action": "print" },
+		{ "id": "glbills", "text": "查询关联", "index": 8, "action": "selects" }
+	]
+  }
+}
+});
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>
+

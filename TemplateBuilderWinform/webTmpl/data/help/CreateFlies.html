@@ -1,0 +1,68 @@
+﻿<style type="text/css">
+	
+</style>
+<div style="width:200px;float:left;"><ul id="tree" class="ztree"></ul></div>
+<div style="float:left;">
+	<p>【一】ctrl目录：放置控制器js文件夹。</p>	
+	<p></p>
+	<p>【二】data目录：前端临时请求的数据定义js文件夹。</p>
+	<p></p>
+	<p>【三】libs目录：放置框架与类库js文件夹。</p>
+	<p></p>
+	<p>【四】ui目录：放置插件js文件夹。</p>
+	<p></p>
+	<p>【五】model目录：放置模型js文件夹。</p>
+	<p></p>
+	<p>【六】view目录：放置视图js文件夹。</p>
+	<p></p>
+	<p>【七】tmpls目录：放置各模版项目的文件夹。</p>
+	<p></p>
+	<p>【八】images目录：放置当前模版图片的文件夹。</p>
+	<p></p>
+	<p>【九】css目录：放置当前模版样式文件的文件夹。</p>
+</div>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			var _url = _sker.getBaseUrl();
+			var CreateFlieTree = function(){
+					_sker.getSrv({
+						 type:'GET',
+						 url:_url + '/data/flie.js',
+						 dataType:'json',
+						 callback:function(data){
+						 			//console.log(data);
+						 			var data = data;
+						 			var items = data.items;
+									var treebloom = data.treebloom;
+									var znode = [];
+									for(var x in items){
+										var text = items[x].text;
+				            var value = items[x].value;
+				            var id = items[x].id;
+				            var pid = items[x].pid;
+				            znode.push({ id: id, pId: pid, name: text, value: value, open: true });
+									}
+									if(treebloom == 0){
+											var treeEvents = function(event, treeId, treeNode, clickFlag){
+													var _ztree = $.fn.zTree.getZTreeObj('tree');
+			                		_ztree.expandNode(treeNode, !treeNode.open);
+					                if (treeNode.children != undefined && treeNode.children.length > 0) {
+					                    return;
+					                }
+											}
+					            var setting = {
+					                check: { enable: false },
+					                data: { simpleData: { enable: true} },
+					                callback: {
+					                    onClick: treeEvents
+					                }
+					            };
+			            		$.fn.zTree.init($('#tree'), setting, znode);
+									}
+						 }
+					});
+			};
+			CreateFlieTree();
+	})($$);	
+</script>

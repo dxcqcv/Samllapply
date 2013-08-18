@@ -1,0 +1,52 @@
+﻿<div class="logo"><img src="css/images/logo_news.jpg" alt="模版LOGO图片放置位置" /></div>
+<div class="nav">
+		<ul id="nav">
+				<li><a href="#help" class="icos">编程帮助</a></li>
+				<li><a href="#newbill" class="icos">模版展示</a></li>
+				<li><h1 class="tits">模版标题</h1><span class="buts icos" s = "b"></span><ul class="treeCons"><li><a href="#billquery" class="icos">模版文字</a></li></ul></li></ul></div>
+<script type="text/javascript">
+(function(_sker){
+				var _sker = _sker;
+				//菜单栏事件委派模拟
+				function LoadEventNav(firstsrc) {
+				    var firstsrc = firstsrc;
+				    if(firstsrc !== undefined){
+				        _sker.tmplsServiceCom.ServiceNav(firstsrc,'allcons');
+				    } 
+				    var _nav = $('#nav');
+				    $('#nav li').eq(0).addClass('newshover');
+				    _nav.bind('click', function (e) {
+				        var tar = e.target,
+				            $tar = $(tar),
+				            nodeName = tar.nodeName,
+				            $li = $('#nav li');
+				        //读取HTML片段
+				        if(nodeName === 'A'){
+				            var href = $tar.attr('href'),
+				                src = href.substring(1),
+				                li = $tar.parent();
+				            $li.removeClass('newshover');
+				            li.addClass('newshover');
+				            _sker.tmplsServiceCom.ServiceNav(src,'allcons');
+				        }
+				        //折叠效果
+				        if(nodeName === 'SPAN'){
+				            var s = $tar.attr('s'),
+				                x = $tar.next();
+				            if (s !== undefined) {
+				                if (s == 'b') {
+				                    x.hide();
+				                    $tar.attr('s', 'n');
+				                    return;
+				                } else {
+				                    x.show();
+				                    $tar.attr('s', 'b');
+				                    return;
+				                }
+				            }
+				        }
+				    });
+				}
+				LoadEventNav('help');
+})($$);	
+</script>

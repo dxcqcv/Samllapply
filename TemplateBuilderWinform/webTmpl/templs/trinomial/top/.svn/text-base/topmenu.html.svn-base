@@ -1,0 +1,32 @@
+﻿<ul id="nav">
+		<li><a href="#help" class="menu">模版使用指南</a></li>
+    <li><a href="#newbill" class="menu">模版展示</a></li>
+    <li><a href="#billquery" class="menu">模版文字</a></li>
+</ul>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			//菜单栏事件委派模拟
+			function LoadEventNav(firstsrc) {
+			    if (firstsrc !== undefined) {
+			        _sker.tmplsServiceCom.ServiceNav(firstsrc,'allcons');
+			    }
+			    var _nav = $('#nav');
+			    _nav.bind('click', function (e) {
+			        var tar = e.target,
+			                $tar = $(tar),
+			                nodeName = tar.nodeName,
+			                $li = $('#nav li');
+			        if (nodeName === 'A') {
+			            var href = $tar.attr('href'),
+			                src = href.substring(1),
+			                li = $tar.parent();
+			            $li.removeClass('newshover');
+			            li.addClass('newshover');
+			            _sker.tmplsServiceCom.ServiceNav(src,'allcons');
+			        }
+			    });
+			}
+			LoadEventNav('help');
+	})($$);
+</script>

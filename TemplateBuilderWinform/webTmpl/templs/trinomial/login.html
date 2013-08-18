@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>登录页模版</title>
+    <link rel="Stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="Stylesheet" type="text/css" href="css/login.css"/>
+    <script type="text/javascript" src="../../libs/seeker.js?ctrl=login2"></script>
+    <!--<script type="text/javascript" src="libs/firebug/build/firebug-lite.js"></script>-->
+</head>
+<body>
+    <noscript>
+        <div id="NetFee-NoScriptMessage">JavaScript 处于禁用状态或者在您的浏览器中不可用！</div>
+    </noscript>
+    <!--sekker容器-->
+    <div id="seeker_container">
+        <!--主体内容-->
+        <div id="content" class="content">
+            <div class="login_auto">
+                <div class="login_title"><h1>模版文字</h1></div>
+                <div class="login_banner" title="模版图片">模版图片</div>
+                <div id="login" class="login_ygcon">
+                    <div class="logings">
+                        <div class="box228">
+                            <h1 class="login_cons">模版文字</h1>
+                            <div class="login_useralls">
+                                <span class="user_x">用户名：</span>
+                                <input type="text" id="txtUserName" class="yguser inp" name="ygUser" value="">
+                            </div>
+                            <div class="login_passalls">
+                                <span class="pass_y">密　码：</span>
+                                <input type="password" id="txtPwd" class="ygpass inp" name="ygPass" value="">
+                            </div>
+                            <div class="state">
+                                <span class="checkboxCenter"><input type="checkbox" id="ckbUserName" class="box" title="保存用户名和密码"></span>
+                                <span class="us">保存用户名和密码</span>
+                            </div>
+                            <span class="code" id="code"></span>
+                        </div>
+                        <div class="sigin">
+                            <a class="now" href="#" title="登录"><input type="button" id="btnLogin" class="submit" value=""></a>
+                        </div>
+                        <div style="float: left; width: 300px; display: none;" id="wait">
+                        <img src="css/images/login_16x16.gif">
+                            <span style="color:green;">正在登录中，请稍等...</span>
+                    		</div>
+                    		<div style="color:#3854AE;margin-top:5px;" id="helps" class="helps">提示：本系统需要加入受信任站点（模版文字）</div>  
+                    </div>
+                    
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <div class="copyright">© 2012 远光软件股份有限公司 版权所有-<strong class="cols">模版文字</strong></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,236 @@
+﻿<style type="text/css">
+		.helps{float:left;width:180px;}
+		.helps{font-family:微软雅黑;padding:1em;}
+		.helps h1{padding:0 0 0 5px;font-size:20px;border-bottom:1px solid #22B2BD;}
+		.helps a{padding:0 0 0 5px;color:#000;font-size:14px;display:block; height:30px; line-height:30px;color:#000 !important;}
+		.helps a:hover{background:#22B2BD; color:#fff !important;}
+		.box260{width:180px;float:left; border:2px solid #22B2BD; margin:10px 10px 10px 0;}
+		/*MVC编程帮助*/
+		#contsMVC{font-family:微软雅黑; color:#000;}
+		#dialogs p{margin:10px 0 10px 0;}
+		.help{width:180px; float:left;}
+		.visbs{position:absolute;top:0px;left:220px;}
+</style>
+<div class="helps">
+		<div class="box260">
+			<h1>文件目录说明</h1>
+			<a href="#" id="flieTools">文件目录说明示例</a>
+		</div>
+		<div class="box260">
+			<h1>MVC编程帮助</h1>
+			<a href="#" id="mvc">前端MVC编程示例</a>
+			<a href="#" id="model">建立模版示例</a>
+			<a href="#" id="eventModel">给模版绑定事件示例</a>
+		</div>
+		<div class="box260">
+			<h1>控件编程帮助</h1>
+			<a href="#" id="log">dialog编程示例</a>
+			<a href="#" id="_log_grid">grid编程示例</a>
+			<a href="#" id="_log_tree">tree编程示例</a>
+			<a href="#" id="_log_tree_grid">tree、grid组合编程示例</a>
+			<a href="#" id="_log_tabs">tabs选项卡编程示例</a>
+			<a href="#" id="_log_date">日期控件编程示例</a>
+			<a href="#" id="_log_tables">table控件编程示例</a>
+			<a href="#" id="_log_flieup">上传控件编程示例</a>
+		</div>
+</div>
+<div class="visbs" id="visbscont"></div>
+<script type="text/javascript">
+	//dialog使用分类
+	(function(_sker){
+				var _sker = _sker,
+						$dialogs = null,
+						$visbscont = $('#visbscont');
+				//初始化dialog编程示例
+				var Usedialogs = function(width,height){
+						//指定dialog容器
+					  var _doms = '<div id="dialogs" title="编程示例"></div>';
+					  if($('#dialogs').length == 0){
+					  	//append到body中
+					  	$('body').append(_doms);
+					  	
+					  }
+					    //获取dialog容器id对象
+					    $dialogs = $('#dialogs');
+					  	//调用dialog，并传入一个对象字面量，以下是常用属性
+					  	$dialogs.dialog({
+					  		 //modal: true,
+					  		 resizable: false,
+					  		 autoOpen:false,
+					  		 width:width,
+					  		 height:height,
+					  		 buttons:[
+					  		 		{
+					  		 			text:'关闭',
+					  		 			click:function(){
+					  		 				$(this).dialog('close');
+					  		 			}	
+					  		 		}
+					  		 ]
+					  	});	
+				};
+				//文件目录
+				var CreateFlie = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateFlies.html');
+				};
+				//MVC编程示例
+				var CreateMVC = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateMvc.html');
+				};
+				//建立模版示例
+				var CreateModel = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateModel.html');
+				};
+				//给模版绑定事件
+				var CreateEventModelTmpl = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateEventModelTmpl.html');
+				};
+				//dialog编程示例
+				var CreateDialog = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateDialog.html');
+				};
+				//grid编程示例
+				var CreateGridHref = function(){
+						if($dialogs != null){
+							$dialogs.empty();
+							$dialogs.dialog('close');
+						}
+						$visbscont.empty().load('../../data/help/CreateGridHref.html');
+				};
+				//tree编程示例
+				var CreateTree = function(){
+						if($dialogs != null){
+							$dialogs.empty();
+							$dialogs.dialog('close');
+						}	
+						$visbscont.empty().load('../../data/help/CreateTree.html');
+				};
+				//tree grid编程示例
+				var CreateTreeGrid = function(){
+						if($dialogs != null){
+							$dialogs.empty();
+							$dialogs.dialog('close');
+						}
+						$visbscont.empty().load('../../data/help/CreateTreeGrid.html');
+				};
+				//tabs选项卡编程示例
+				var CreateTabs = function(){
+						if($dialogs != null){
+							$dialogs.empty();
+							$dialogs.dialog('close');
+						}
+						$visbscont.empty().load('../../data/help/CreateTabs.html');
+				};
+				//table控件编程示例
+				var CreateTables = function(){
+						if($dialogs != null){
+							$dialogs.empty();
+							$dialogs.dialog('close');
+						}
+						$visbscont.empty().load('../../data/help/CreateTables.html');
+				};
+				//上传控件编程示例
+				var CreateFlieUp = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateFlieUp.html');
+				};
+				//日期控件编程示例
+				var CreateData = function(){
+						$visbscont.empty();
+						$dialogs.empty().load('../../data/help/CreateTimes.html');
+				};
+				//文件目录说明示例
+				$('#flieTools').bind('click',function(){
+						Usedialogs(600,500);
+						$dialogs.dialog('open');
+						CreateFlie();
+				})
+				//前端MVC模型编程示例
+				$('#mvc').bind('click',function(e){
+						Usedialogs(900,460);
+						$dialogs.dialog('open');
+						CreateMVC();
+				});
+				//建立模版示例
+				$('#model').bind('click',function(e){
+						Usedialogs(900,460);
+						$dialogs.dialog('open');
+						CreateModel()
+				});
+				//绑定模版事件示例
+				$('#eventModel').bind('click',function(e){
+						Usedialogs(900,460);
+						$dialogs.dialog('open');
+						CreateEventModelTmpl();
+				});
+				//空dialog编程示例
+				$('#log').bind('click',function(e){
+						Usedialogs(900,460);
+						$dialogs.dialog('open');
+						CreateDialog();		
+				});
+				//grid编程示例
+				$('#_log_grid').bind('click',function(e){
+						CreateGridHref();
+				});
+				//tree树编程示例
+				$('#_log_tree').bind('click',function(e){
+						CreateTree();
+				});
+				//tree树与gird混合编程示例
+				$('#_log_tree_grid').bind('click',function(){
+						CreateTreeGrid();
+				});
+				//tabs选项卡编程示例
+				$('#_log_tabs').bind('click',function(){
+						CreateTabs();
+				});
+				//table控件编程示例
+				$('#_log_tables').bind('click',function(){
+						Usedialogs(900,500);
+						$dialogs.dialog('open');
+						CreateTables();
+				});
+				//上传控件编程示例
+				$('#_log_flieup').bind('click',function(){
+						Usedialogs(900,500);
+						$dialogs.dialog('open');
+						CreateFlieUp();
+				});
+				//日期控件编程示例
+				$('#_log_date').bind('click',function(){
+						Usedialogs(900,550);
+						$dialogs.dialog('open');
+						CreateData();
+				});
+	})($$);	
+</script>
+<script type="text/javascript">
+	(function(_sker){
+			var myapp = (function(){
+					var array = '[object Array]';
+					var ops = Object.prototype.toString;
+					inArray = function(haystack,needle){
+						for(var i = 0,max = haystack.length; i <max;i +=1){
+							if(haystack[i]===needle){
+								return i;
+							}
+						}
+						return -1;
+					};
+					isArray = function(a){
+						return ops.call(a) === array;
+					}
+					return {
+						 isArray:isArray,
+						 inArray:inArray					
+					}	
+			}());
+			//console.log(myapp.inArray(["a","b","z","5"],"5"));
+	})($$);	
+</script>

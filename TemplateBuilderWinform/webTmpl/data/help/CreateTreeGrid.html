@@ -1,0 +1,191 @@
+﻿<div  style=" height:150px;">
+		<div style="width:180px;float:left;"><ul id="tree" class="ztree"></ul></div>
+		<div style="float:left; margin:10px 0 0 0;" id="_gird"><table id="gird"></table></div>
+</div>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			var _url = _sker.getBaseUrl();
+			var CreareTrees = function(){
+				_sker.getSrv({
+					type:'GET',
+					url:_url + '/data/tree.js',
+					dataType:'json',
+					callback:function(data){
+						var data = data;
+						var items = data.items;
+						var treebloom = data.treebloom;
+						var znode = [];
+						for(var x in items){
+							var text = items[x].text;
+	            var value = items[x].value;
+	            var id = items[x].id;
+	            var pid = items[x].pid;
+	            var grids = items[x].grids;
+	            znode.push({ id: id, pId: pid, name: text, value: value,grids:grids, open: false });
+						}
+						if(treebloom == 0){
+								var treeEvents = function(event, treeId, treeNode, clickFlag){
+										var _ztree = $.fn.zTree.getZTreeObj('tree');
+                		_ztree.expandNode(treeNode, !treeNode.open);
+                		var treevalue = treeNode.grids;
+                		if(treevalue !== undefined){
+                			var $gird = $('#_gird');
+                			$gird.empty().append('<table id="gird"></table>');
+                			CreareGrids(treevalue);
+                		}
+		                if (treeNode.children != undefined && treeNode.children.length > 0) {
+		                    return;
+		                }
+								}
+		            var setting = {
+		                check: { enable: false },
+		                data: { simpleData: { enable: true} },
+		                callback: {
+		                    onClick: treeEvents
+		                }
+		            };
+            		$.fn.zTree.init($('#tree'), setting, znode);
+						}
+					}
+				});	
+			};
+			var CreareGrids = function(z){
+				if(z !== undefined){
+					var z = z;
+				}
+				var $gird = $('#gird');
+						$gird.jqGrid({
+								url: _url + "/data/billqueryservice"+ z +".js",
+            		datatype: 'json',
+		            colNames: ["BillTypeID", "ClassID", "单据类型编号", "单据类型名称", "单据说明"],
+		            colModel: [
+			          	{ name: 'BillTypeID', index: 'BillTypeID', width: 50, hidden: true }, //单据类型id
+				        	{name: 'ClassID', index: 'ClassID', width: 50, hidden: true },  //单据分类id
+			            {name: 'BillTypeCode', index: 'BillTypeCode', width: 180 },  //单据类型编号
+			            {name: 'BillTypeName', index: 'BillTypeName', width: 230 },  //单据类型名称
+			            {name: 'Description', index: 'Description', width: 180}  //单据说明
+			          ],
+		            rowNum: 5,
+		            jsonReader: { root: "Value", page: "currpage", total: "totalpages", records: "totalrecords", userdata: "userdata", repeatitems: false, id: "0" }
+			          , cmTemplate: {sortable: false}
+			          , mtype: "GET"
+			          , viewrecords: true
+			          , emptyrecords: "没有找到数据"
+		            , autowidth: false
+			          , forceFit: true
+			          , gridview: true
+			          , height: "auto"
+			          , loadError: function (xhr, status, error) { _sker.ShowMsg("加载错误\n\n" + status + "-" + error); }
+			          , loadBeforeSend: function (xhr) {}
+			          , loadComplete: function (xhr) {}
+				        , ondblClickRow: function (rowid, iRow, iCol, e) {}
+						});		
+			}
+			CreareTrees();
+			CreareGrids(2);
+	})($$);
+</script>
+<div>
+<textarea id="code" name="code">
+{树与grid表格组合使用}
+
+【一】：定义树的数据结构，定义grid数据结构。{如何定义请参阅tree与grid编程示例}
+
+【二】：具体逻辑代码如下：
+
+var _sker = _sker;
+var _url = _sker.getBaseUrl();
+var CreareTrees = function(){
+	_sker.getSrv({
+		type:'GET',
+		url:_url + '/data/tree.js',
+		dataType:'json',
+		callback:function(data){
+			var data = data;
+			var items = data.items;
+			var treebloom = data.treebloom;
+			var znode = [];
+			for(var x in items){
+				var text = items[x].text;
+				var value = items[x].value;
+				var id = items[x].id;
+				var pid = items[x].pid;
+				var grids = items[x].grids;
+				znode.push({ id: id, pId: pid, name: text, value: value,grids:grids, open: false });
+			}
+			if(treebloom == 0){
+					var treeEvents = function(event, treeId, treeNode, clickFlag){
+							var _ztree = $.fn.zTree.getZTreeObj('tree');
+            	_ztree.expandNode(treeNode, !treeNode.open);
+            	var treevalue = treeNode.grids;
+            if(treevalue !== undefined){
+                var $gird = $('#_gird');
+                $gird.empty().append('<table id="gird"></table>');
+                CreareGrids(treevalue);
+            }
+				    if (treeNode.children != undefined && treeNode.children.length > 0) {
+				        return;
+				    }
+					}
+					var setting = {
+					    check: { enable: false },
+					    data: { simpleData: { enable: true} },
+					    callback: {
+					        onClick: treeEvents
+					    }
+					};
+        	$.fn.zTree.init($('#tree'), setting, znode);
+			}
+		}
+	});	
+};
+var CreareGrids = function(z){
+	if(z !== undefined){
+		var z = z;
+	}
+	var $gird = $('#gird');
+			$gird.jqGrid({
+				url: _url + "/data/billqueryservice"+ z +".js",
+        datatype: 'json',
+				colNames: ["BillTypeID", "ClassID", "单据类型编号", "单据类型名称", "单据说明"],
+				colModel: [
+					{name: 'BillTypeID', index: 'BillTypeID', width: 50, hidden: true },
+					{name: 'ClassID', index: 'ClassID', width: 50, hidden: true },
+					{name: 'BillTypeCode', index: 'BillTypeCode', width: 100 }, 
+					{name: 'BillTypeName', index: 'BillTypeName', width: 150 }, 
+					{name: 'Description', index: 'Description', width: 100} 
+			],
+			rowNum: 5,
+			jsonReader: { 
+				root: "Value", 
+				page: "currpage",
+			 	total: "totalpages",
+			  records: "totalrecords", 
+			  userdata: "userdata", 
+			  repeatitems: false, 
+			  id: "0" }
+			, cmTemplate: {sortable: false}
+			, mtype: "GET"
+			, viewrecords: true
+			, emptyrecords: "没有找到数据"
+		, autowidth: false
+			, forceFit: true
+			, gridview: true
+			, height: "auto"
+			, loadError: function (xhr, status, error) {
+				 _sker.ShowMsg("加载错误\n\n" + status + "-" + error);
+			 }
+			, loadBeforeSend: function (xhr) {}
+			, loadComplete: function (xhr) {}
+			, ondblClickRow: function (rowid, iRow, iCol, e) {}
+			});		
+}     
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

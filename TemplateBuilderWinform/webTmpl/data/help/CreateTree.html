@@ -1,0 +1,120 @@
+﻿<style>
+	#tree{width:800px;}	
+</style>
+<ul id="tree" class="ztree"></ul>
+<script type="text/javascript">
+	(function(_sker){
+			var _sker = _sker;
+			var urls = _sker.getBaseUrl();
+			_sker.getSrv({
+					type:'GET',
+					url:urls + '/data/tree.js',
+					dataType:'json',
+					callback:function(data){
+						var data = data;
+						var items = data.items;
+						var treebloom = data.treebloom;
+						var znode = [];
+						for(var x in items){
+							var text = items[x].text;
+	            var value = items[x].value;
+	            var id = items[x].id;
+	            var pid = items[x].pid;
+	            znode.push({ id: id, pId: pid, name: text, value: value, open: false });
+						}
+						if(treebloom == 0){
+								var treeEvents = function(event, treeId, treeNode, clickFlag){
+										var _ztree = $.fn.zTree.getZTreeObj('tree');
+                		_ztree.expandNode(treeNode, !treeNode.open);
+		                if (treeNode.children != undefined && treeNode.children.length > 0) {
+		                    return;
+		                }
+								}
+		            var setting = {
+		                check: { enable: false },
+		                data: { simpleData: { enable: true} },
+		                callback: {
+		                    onClick: treeEvents
+		                }
+		            };
+            		$.fn.zTree.init($('#tree'), setting, znode);
+						}
+					}
+			});
+	})($$);	
+</script>
+<div>
+<textarea id="code" name="code">
+【一】：设置树结构时，首先需要定义树的数据结构，
+
+[小提示：一级树的id为1,二级树的id为2~N+1，pid为1。三级树的id为3~N+1，pid为2~N+1。]
+
+[小提示：二级树在一级树中，那么它的pid就为一级树的id:1。]
+
+{
+	"treebloom":"0",
+	"items": [
+		{ "id":1,"pid":-1, "text": "帮助示例", "value": "bj"},
+		{ "id": 2, "pid": 1, "text": "MVC编程帮助", "value": "scw"},
+		{ "id": 3, "pid": 1,"text": "控件编程帮助", "value": "qzs"},
+		{ "id": 4, "pid": 2, "text": "前端MVC编程示例", "value": "bc"},
+		{ "id": 5, "pid": 3, "text": "dialog示例", "value": "cnjs" },
+		{ "id": 6, "pid": 3, "text": "grid示例", "value": "zao" }
+	]
+}
+
+【二】：引入tree控件文件，此处有三项文件引入。
+
+[小提示：seeker.ui.tree.js；tree.css；tree控件依赖于jquery.js；]
+
+[小提示：jquery.js文件需在它之前引入。css文件与js文件，可以在需要tree树控件的控制器中引入。]
+
+	//指定要加载的JS类库
+	
+	 var Loadfiles = [_sker.getUrl("ui/seeker.ui.tree.js")];
+	_sker.scriptLoader.loadByLAB(Loadfiles, loaded);
+	
+	//指定要加载的css文件
+	
+	_sker.skins.loadcss(_skinPATH + "/tree/tree.css");
+	
+【三】：编写初始化树型结构的代码。
+
+[小提示：传入三个参数，JQ的元素对象，控件设置的对象参数集合，遍历出来的数据集合]
+
+	var data = data;
+	var items = data.items;
+	var treebloom = data.treebloom;
+	var znode = [];
+	for(var x in items){
+		var text = items[x].text;
+		var value = items[x].value;
+		var id = items[x].id;
+		var pid = items[x].pid;
+		znode.push({ id: id, pId: pid, name: text, value: value, open: false });
+	}
+	if(treebloom == 0){
+	var treeEvents = function(event, treeId, treeNode, clickFlag){
+		var _ztree = $.fn.zTree.getZTreeObj('tree');
+		_ztree.expandNode(treeNode, !treeNode.open);
+		if (treeNode.children != undefined && treeNode.children.length > 0) {
+			return;
+		}
+	}
+	var setting = {
+		check: { enable: false },
+		data: { simpleData: { enable: true} },
+		callback: {
+		onClick: treeEvents
+		}
+	};
+	$.fn.zTree.init($('#tree'), setting, znode);
+	}
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

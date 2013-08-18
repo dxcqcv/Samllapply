@@ -1,0 +1,70 @@
+﻿<div>
+	<input type="text" id="time">
+</div>
+<script type="text/javascript">
+(function(_sker){
+		var _sker = _sker;
+		var _url = _sker.getBaseUrl();
+		var initdate = new Date().format("yyyy-MM-dd");
+		////绑定日期控件
+    $("#time").datepicker({
+        showOn: "button",
+        buttonImage: _url + "/data/calendar_ico.png",
+        buttonImageOnly: true,
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        onSelect:function(day){
+        	//console.log(day);
+        }
+    }).val(initdate);
+})($$);	
+</script>
+<div>
+<textarea id="code" name="code">
+【一】初始化控件。
+
+[小提示：日期控件属于jquery_ui.js，依赖于jquery。]
+
+[小提示：日期控件，需与输入框一起使用，id要写在input上。]
+
+[小提示：事件函数为onSelect，通过它可以得到日期值。]
+
+var _sker = _sker;
+
+var _url = _sker.getBaseUrl();
+
+var initdate = new Date().format("yyyy-MM-dd");
+
+////绑定日期控件
+
+$("#time").datepicker({
+
+	showOn: "button",
+	
+	buttonImage: _url + "/data/calendar_ico.png",
+	
+	buttonImageOnly: true,
+	
+	changeMonth: true,
+	
+	changeYear: true,
+	
+	showButtonPanel: true,
+	
+	onSelect:function(day){
+	
+		//console.log(day);
+		
+	}
+	
+}).val(initdate);
+
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

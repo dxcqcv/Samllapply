@@ -1,0 +1,59 @@
+﻿<div>
+<textarea id="code" name="code">
+【一】：首先请注意我们在模型层中定义的数据模型，有如下定义：action，此定义为模版事件驱动。
+
+$$.model.add('billtoolbar',function(){
+
+	//使用哪个视图
+	
+	this.UseView = "billtoolbar";
+	
+	//模型数据定义
+	
+	this.data = {
+	
+	"BillToolBar":
+	
+	{
+	"fields": [
+		{ "id": "savebill", "text": "保存", "index": 0, "action": "savebill" },
+		{ "id": "ct", "text": "传递", "index": 1, "action": "cdbill" },
+		{ "id":"insaffix", "text":"插入附件", "index":2, "validate":"required", "action":"insaffix"},
+		{ "id":"glbill","text":"关联单据", "type":"datepicker","index":3, "action":"glbill"},
+		{ "id": "lzjl", "text": "流转记录", "index": 4, "action": "record" },
+		{ "id": "xplc", "text": "审批流程", "index": 5, "action": "approveflow" },
+		{ "id": "preview", "text": "预览", "index": 6, "action": "preview" },
+		{ "id": "print", "text": "打印", "index": 7, "action": "print" },
+		{ "id": "glbills", "text": "查询关联", "index": 8, "action": "selects" }
+	]
+  }
+}
+});
+
+【二】：此刻，可以在相关联的控制器中，定义事件驱动了。this.ActionResult = {}，在这个花括号中定义你想要的事件模型。
+
+[小提示：事件模型，是已知的w3c事件模型，如click，mousover等所有符合其元素事件的模型。]
+
+	//model里需要执行的动作事件
+	
+	this.ActionResult = {
+	
+	////上传附件
+	
+	insaffix: {
+	
+    click: function () {
+    
+       ////事件驱动
+          
+    }
+	}
+}
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>

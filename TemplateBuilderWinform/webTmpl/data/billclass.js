@@ -1,0 +1,1 @@
+﻿{"Value":[{"ClassID":1,"ParentID":-1,"ClassName":"单据分类"},{"ClassID":2,"ParentID":1,"ClassName":"差旅费报销"},{"ClassID":3,"ParentID":1,"ClassName":"借款"},{"ClassID":4,"ParentID":1,"ClassName":"财务结算"},{"ClassID":5,"ParentID":1,"ClassName":"一般业务报销"},{"ClassID":6,"ParentID":1,"ClassName":"申请单"}],"ErrorMsg":"","RefResult":null,"OutResult":null}

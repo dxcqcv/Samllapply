@@ -1,0 +1,42 @@
+﻿<style type="text/css">
+	.up{width:80px;height:30px;display:block;background:#896;color:#fff !important;text-align:center;line-height:30px;font-size:16px;}
+</style>
+<div id="file-uploader">
+	<a href="#" class="up">上传</a>
+</div>
+<script type="text/javascript">
+	(function(_sker){
+		 var _sker = _sker;
+		 var _url = _sker.getBaseUrl();
+		 //创建上传文件窗体
+    function createUploader() {
+        var uploader = new qq.FileUploader({
+            element: document.getElementById('file-uploader'),
+            action: _url + "/flieup.html", 
+            debug: true,
+            sizeLimit: 10000000,
+            multiple: false,
+            onSubmit: function (id, fileName) {
+            		console.log(fileName);
+            },
+            onProgress: function (id, fileName, loaded, total) {},
+            onComplete: function (id, fileName, responseJSON) {},
+            onCancel: function (id, fileName) { },
+            showMessage: function (message) { }
+        });
+    };
+    //createUploader();
+	})($$);
+</script>
+<div>
+<textarea id="code" name="code">
+
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>
+

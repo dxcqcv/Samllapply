@@ -1,0 +1,1 @@
+﻿{"Value":true,"ErrorMsg":"","RefResult":"<Parameter><SessionId>814efa47-f15c-42b2-ae97-f4032afd096a</SessionId><UserName>wyb</UserName><UserId>39</UserId><EmpName>wyb</EmpName></Parameter>","OutResult":""}

@@ -1,0 +1,33 @@
+﻿/*!
+* v1.0  前端工具模版，公共样式
+* http://ygsoft.com/
+*
+* Author:向文文
+* Date: 2012-11-12
+*
+*/
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,span,legend,input,button,textarea,select,p,blockquote,th,td{margin:0;padding:0}body{color:#000;font-size:12px;}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,button,caption,cite,code,dfn,em,input,optgroup,option,select,strong,textarea,th,var{font:inherit}del,ins{text-decoration:none}li{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:baseline}sub{vertical-align:baseline}legend{color:#000}
+a{ text-decoration:none;}
+/*所有的button按钮*/
+button
+{
+    height:30px;_height:21px; 
+    font-family:Arial; 
+    color:#000; 
+    font-size:12px;   
+    cursor: pointer;
+    line-height: 1.4em;
+    _line-height: 1.5em;
+    overflow: visible;
+    padding: 0.2em 0.6em 0.3em;
+    width: auto;
+    background: url("images/jqgrid/ui-bg_glass_85_dfeffc_1x400.png") repeat-x scroll 50% 50% #DFEFFC;
+    border: 1px solid #C5DBEC;
+    color: #2E6E9E;
+    font-weight: bold;     
+    }
+.ui-dialog .ui-dialog-buttonpane button {margin: 0 4px 0 0 !important;padding: 0 !important;   }
+.ui-button-text{line-height:0.8em !important}
+/*等待图标*/
+#loadui_tipshowText{position:absolute;z-index:100000;background-color:#FFF;padding:15px;border: 1px solid #999999;text-align:center;}
+

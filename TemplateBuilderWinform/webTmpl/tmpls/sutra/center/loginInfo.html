@@ -1,0 +1,20 @@
+﻿<div class="login_letter"><div class="login_info"><span id="userinfo">欢迎XXX登录成功</span>| <span id="timeDate"></span>| <span><a class="close" id="logout" href="#">退出</a></span></div></div>
+<script type="text/javascript">
+(function(_sker){
+				var _sker = _sker;
+				//退出登录
+        var logoutEv = function () {
+            location.href = 'login.html';
+        };
+				//登录信息
+        function LoginInfo(){
+            //获取系统时间
+           	_sker.tmplsServiceCom.SystemTimes('timeDate');
+            //退出
+            $("#logout").bind('click', function () {
+                _sker.ShowMsg('是否要退出系统？', '3', { confirm: logoutEv });
+            });
+        }
+        LoginInfo();
+})($$)	
+</script>

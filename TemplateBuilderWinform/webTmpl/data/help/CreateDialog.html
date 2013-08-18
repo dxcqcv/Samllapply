@@ -1,0 +1,48 @@
+﻿<div>
+<textarea id="code" name="code">
+【一】：dialog是jquery_ui.js中的模型，依赖于jquery.js，需引入其文件。
+
+【二】：首先需要加载一个容器在body下，此容器是供给dialog使用的容器。
+
+//指定dialog容器
+
+	var _doms = '<div id="dialogs" title="帮助示例"></div>';
+	
+【三】：初始化过程的参数是需要手动配置的，一个对象参数集合。
+
+	if($('#dialogs').length == 0){
+	
+		//append到body中
+		
+		$('body').append(_doms);				  	
+	}
+	
+	//获取dialog容器id对象
+	
+	$dialogs = $('#dialogs');
+	
+	//调用dialog，并传入一个对象字面量，以下是常用属性
+	
+	$dialogs.dialog({
+		//modal: true,
+		resizable: false,
+		autoOpen:false,
+		width:width,
+		height:height,
+		buttons:[
+			{
+				text:'关闭',
+				click:function(){
+					$(this).dialog('close');
+				}	
+			}
+		]
+	});	
+</textarea>
+</div>
+<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true
+    });
+</script>
