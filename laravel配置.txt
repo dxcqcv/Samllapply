@@ -1,0 +1,4 @@
+1：安装composer
+2：php开启SSL扩展
+3：下载laravel在项目文件中
+4：在命令行进入项目文件目录中，命令，composer install。
